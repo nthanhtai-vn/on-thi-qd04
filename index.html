@@ -86,6 +86,8 @@
     overflow: hidden;
     z-index: 1;
     transition: 0.3s;
+
+    animation: glow 2s ease-in-out infinite alternate;
 }
 
 .btn:hover{
@@ -116,10 +118,6 @@
     z-index: -2;
     animation: rgb-border 4s linear infinite;
 }
-.btn{
-    animation: glow 2s ease-in-out infinite alternate;
-}
-
 @keyframes glow{
     from{
         box-shadow:
