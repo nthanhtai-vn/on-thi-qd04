@@ -1,278 +1,250 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TÀI LIỆU ÔN THI ĐÁNH GIÁ NĂNG LỰC BỘ QUỐC PHÒNG</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPA ÔN THI PRO</title>
 
-    <style>
-        body{
-            margin:0;
-            padding:30px;
-            background:#000;
-            font-family:Arial, Helvetica, sans-serif;
-            text-align:center;
-            overflow:hidden;
-        }
+<style>
+body{
+    margin:0;
+    padding:30px;
+    background:#000;
+    font-family:Arial;
+    text-align:center;
+    overflow:hidden;
+}
 
-        /* 🌌 NỀN SAO */
-        #stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: black;
-            z-index: -1;
-            overflow: hidden;
-        }
+/* 🌌 STAR */
+#stars{
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    z-index:-1;
+}
+.star{
+    position:absolute;
+    width:2px;height:2px;
+    background:#fff;
+    border-radius:50%;
+    opacity:0.6;
+    animation:fall linear infinite;
+}
+@keyframes fall{
+    from{transform:translateY(0)}
+    to{transform:translateY(100vh)}
+}
 
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.6;
-            animation: moveStars linear infinite;
-        }
+/* TITLE */
+h1{
+    font-size:28px;
+    color:transparent;
+    background:linear-gradient(90deg,red,orange,yellow,cyan,blue,violet,red);
+    background-size:400%;
+    -webkit-background-clip:text;
+    animation:rgb 5s linear infinite;
+}
+@keyframes rgb{
+    0%{background-position:400%}
+    100%{background-position:0%}
+}
 
-        @keyframes moveStars {
-            from { transform: translateY(0); }
-            to { transform: translateY(100vh); }
-        }
+/* PAGE SYSTEM */
+.page{
+    display:none;
+}
+.page.active{
+    display:block;
+}
 
-        h1{
-            margin-bottom:40px;
-            font-size:32px;
-            text-transform:uppercase;
-            font-weight:bold;
+/* CARD */
+.container{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:40px;
+}
+.card img{
+    width:320px;
+    border-radius:12px;
+    transition:.3s;
+}
+.card img:hover{
+    transform:scale(1.05);
+}
 
-            background: linear-gradient(
-                90deg,
-                red,
-                orange,
-                yellow,
-                lime,
-                cyan,
-                blue,
-                violet,
-                red
-            );
+/* MENU TOP */
+.top-menu{
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:999;
+}
+.menu-btn{
+    width:50px;height:50px;
+    background:linear-gradient(90deg,cyan,blue,violet);
+    border-radius:10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    color:#fff;
+    font-size:24px;
+}
+.dropdown{
+    display:none;
+    position:absolute;
+    top:60px;
+    right:0;
+    background:#111;
+    border-radius:10px;
+    overflow:hidden;
+}
+.dropdown a{
+    display:block;
+    padding:12px;
+    color:#fff;
+    text-decoration:none;
+}
+.dropdown a:hover{
+    background:cyan;
+    color:black;
+}
+.top-menu.open .dropdown{
+    display:block;
+}
 
-            background-size: 400%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+/* BOTTOM MENU */
+.radial{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+}
+.main-btn{
+    width:60px;height:60px;
+    border-radius:50%;
+    background:linear-gradient(90deg,cyan,blue,violet);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    color:#fff;
+    font-size:22px;
+}
+.items{
+    position:absolute;
+    bottom:70px;
+    right:0;
+}
+.item{
+    width:45px;height:45px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:8px 0;
+    transform:scale(0);
+    transition:.3s;
+}
+.radial.open .item{
+    transform:scale(1);
+}
+.fb{background:#1877F2}
+.zalo{background:#00c300}
+.mess{background:#0084ff}
 
-            animation: rgbText 5s linear infinite;
-
-            text-shadow:
-                0 0 10px rgba(255,255,255,0.5),
-                0 0 20px rgba(255,255,255,0.3),
-                0 0 30px rgba(255,255,255,0.2);
-        }
-
-        @keyframes rgbText{
-            0%{ background-position: 400% 0; }
-            100%{ background-position: 0% 0; }
-        }
-
-        .container{
-            display:flex;
-            justify-content:center;
-            gap:50px;
-            flex-wrap:wrap;
-        }
-
-        .card{
-            width:400px;
-        }
-
-        .card img{
-            width:100%;
-            border-radius:12px;
-            box-shadow:0 0 15px rgba(255,255,255,0.2);
-            transition:all .3s ease;
-            cursor:pointer;
-        }
-
-        .card img:hover{
-            transform:scale(1.05);
-            box-shadow:
-                0 0 20px cyan,
-                0 0 40px blue,
-                0 0 60px violet;
-        }
-
-        /* ===== MENU GÓC PHẢI PRO ===== */
-        .top-menu{
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .menu-btn{
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            background: linear-gradient(90deg, cyan, blue, violet);
-            color: white;
-            font-size: 26px;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            cursor:pointer;
-            box-shadow:0 0 15px rgba(0,255,255,0.5);
-        }
-
-        .dropdown{
-            position:absolute;
-            top:60px;
-            right:0;
-            width:180px;
-            background:rgba(20,20,20,0.95);
-            border-radius:12px;
-            overflow:hidden;
-            display:none;
-        }
-
-        .dropdown a{
-            display:block;
-            padding:12px;
-            color:white;
-            text-decoration:none;
-            font-weight:bold;
-        }
-
-        .dropdown a:hover{
-            background:cyan;
-            color:black;
-        }
-
-        .top-menu.open .dropdown{
-            display:block;
-        }
-
-        /* ===== MENU VÒNG TRÒN ===== */
-        .radial-menu{
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 120px;
-            height: 120px;
-            z-index: 999;
-        }
-
-        .center-btn{
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(90deg, cyan, blue, violet);
-            color: white;
-            font-size: 26px;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            cursor:pointer;
-            box-shadow:0 0 15px rgba(0,255,255,0.5);
-        }
-
-        .radial-item{
-            position:absolute;
-            width:45px;
-            height:45px;
-            border-radius:50%;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            text-decoration:none;
-            transform:scale(0);
-            opacity:0;
-            transition:0.3s;
-        }
-
-        .fb{ background:#1877F2; }
-        .zalo{ background:#00c300; }
-        .mess{ background:#0084ff; }
-
-        .radial-menu.open .fb{
-            transform: translate(-80px,-80px) scale(1);
-            opacity:1;
-        }
-
-        .radial-menu.open .zalo{
-            transform: translate(0px,-110px) scale(1);
-            opacity:1;
-        }
-
-        .radial-menu.open .mess{
-            transform: translate(-110px,0px) scale(1);
-            opacity:1;
-        }
-
-    </style>
+img{
+    max-width:100%;
+}
+</style>
 </head>
 
 <body>
 
 <div id="stars"></div>
 
-<!-- 🌐 MENU GÓC PHẢI -->
+<!-- MENU TOP -->
 <div class="top-menu" id="topMenu">
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
-    <div class="dropdown">
-        <a href="#">🏠 Trang chủ</a>
-        <a href="#tailieu">📚 Tài liệu</a>
-        <a href="#luyende">📝 Luyện đề</a>
-        <a href="#lienhe">💬 Liên hệ</a>
-    </div>
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+<div class="dropdown">
+<a onclick="showPage('home')">🏠 Trang chủ</a>
+<a onclick="showPage('docs')">📚 Tài liệu</a>
+<a onclick="showPage('exam')">📝 Luyện đề</a>
+<a onclick="showPage('contact')">💬 Liên hệ</a>
+</div>
 </div>
 
-<h1>
-TÀI LIỆU ÔN THI ĐÁNH GIÁ NĂNG LỰC BỘ QUỐC PHÒNG - QD04
-</h1>
+<h1>ÔN THI ĐÁNH GIÁ NĂNG LỰC</h1>
 
+<!-- PAGES -->
+<div id="home" class="page active">
 <div class="container">
-
-    <div class="card"><a href="#"><img src="poster-su.png"></a></div>
-    <div class="card"><a href="#"><img src="poster-dia.png"></a></div>
-    <div class="card"><a href="#"><img src="dinhtinh.png"></a></div>
-    <div class="card"><a href="#"><img src="dinhluong.png"></a></div>
-
+<div class="card"><img src="poster-su.png"></div>
+<div class="card"><img src="poster-dia.png"></div>
+<div class="card"><img src="dinhtinh.png"></div>
+<div class="card"><img src="dinhluong.png"></div>
+</div>
 </div>
 
-<!-- 💬 MENU DƯỚI -->
-<div class="radial-menu">
+<div id="docs" class="page">
+<h2 style="color:white">📚 TÀI LIỆU</h2>
+<div class="container">
+<div class="card"><img src="dinhtinh.png"></div>
+<div class="card"><img src="dinhluong.png"></div>
+<div class="card"><img src="poster-su.png"></div>
+<div class="card"><img src="poster-dia.png"></div>
+</div>
+</div>
 
-    <a class="radial-item fb" href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png"></a>
-    <a class="radial-item zalo" href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg"></a>
-    <a class="radial-item mess" href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111466.png"></a>
+<div id="exam" class="page">
+<h2 style="color:white">📝 LUYỆN ĐỀ</h2>
+<div class="container">
+<div class="card"><img src="poster-su.png"></div>
+<div class="card"><img src="poster-dia.png"></div>
+</div>
+</div>
 
-    <div class="center-btn" onclick="toggleRadial()">💬</div>
+<div id="contact" class="page">
+<h2 style="color:white">LIÊN HỆ</h2>
+</div>
 
+<!-- BOTTOM MENU -->
+<div class="radial" id="radial">
+<div class="main-btn" onclick="toggleRadial()">💬</div>
+<div class="items">
+<div class="item fb">f</div>
+<div class="item zalo">z</div>
+<div class="item mess">m</div>
+</div>
 </div>
 
 <script>
-    for(let i=0;i<80;i++){
-        let s=document.createElement("div");
-        s.className="star";
-        s.style.left=Math.random()*100+"vw";
-        s.style.top=Math.random()*100+"vh";
-        s.style.animationDuration=(Math.random()*5+3)+"s";
-        document.getElementById("stars").appendChild(s);
-    }
+// STAR
+for(let i=0;i<60;i++){
+let s=document.createElement("div");
+s.className="star";
+s.style.left=Math.random()*100+"vw";
+s.style.top=Math.random()*100+"vh";
+s.style.animationDuration=(Math.random()*5+3)+"s";
+document.getElementById("stars").appendChild(s);
+}
 
-    function toggleRadial(){
-        document.querySelector(".radial-menu").classList.toggle("open");
-    }
+// MENU TOP
+function toggleMenu(){
+document.getElementById("topMenu").classList.toggle("open");
+}
 
-    function toggleMenu(){
-        document.getElementById("topMenu").classList.toggle("open");
-    }
+// RADIAL
+function toggleRadial(){
+document.getElementById("radial").classList.toggle("open");
+}
+
+// SPA PAGE SWITCH
+function showPage(id){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+document.getElementById("topMenu").classList.remove("open");
+}
 </script>
 
 </body>
