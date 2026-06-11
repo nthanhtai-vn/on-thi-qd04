@@ -435,114 +435,97 @@ onAuthStateChanged(auth, user => {
     app.style.display = "block";
 document.getElementById("loginBox")?.remove();
   } else {
-    app.style.display = "none";
+  app.style.display = "none";
 
-    // chỉ tạo 1 lần
-    if (!loginBox) {
-      document.body.insertAdjacentHTML("afterbegin", `
-<div id="loginBox" style="
-    position:fixed;
-    inset:0;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    background:rgba(0,0,0,0.85);
-    z-index:99999;
-    color:white;
-    text-align:center;
-    padding:20px;
-">
+  if (!loginBox) {
+    document.body.insertAdjacentHTML("afterbegin", `
+      <div id="loginBox" style="
+          position:fixed;
+          inset:0;
+          display:flex;
+          flex-direction:column;
+          justify-content:center;
+          align-items:center;
+          background:rgba(0,0,0,0.85);
+          z-index:99999;
+          color:white;
+          text-align:center;
+          padding:20px;
+      ">
 
-  <!-- TITLE -->
-  <h1 style="
-      font-size:34px;
-      margin-bottom:10px;
-      background:linear-gradient(90deg,red,orange,yellow,lime,cyan,blue,violet,red);
-      background-size:400%;
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      animation:rgb 4s linear infinite;
-      text-transform:uppercase;
-      font-weight:bold;
-  ">
-    TỔNG HỢP TÀI LIỆU ÔN THI VÀ LUYỆN ĐỀ<br>
-    ĐÁNH GIÁ NĂNG LỰC BỘ QUỐC PHÒNG
-  </h1>
+        <h1 style="
+            font-size:34px;
+            margin-bottom:10px;
+            background:linear-gradient(90deg,red,orange,yellow,lime,cyan,blue,violet,red);
+            background-size:400%;
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            animation:rgb 4s linear infinite;
+        ">
+          TỔNG HỢP TÀI LIỆU ÔN THI VÀ LUYỆN ĐỀ<br>
+          ĐÁNH GIÁ NĂNG LỰC BỘ QUỐC PHÒNG
+        </h1>
 
-  <!-- SUBTITLE -->
-  <p style="
-      font-size:22px;
-      margin-bottom:25px;
-      color:#ccc;
-      animation:rgb 6s linear infinite;
-  ">
-    Bạn chưa đăng nhập
-  </p>
+        <p style="font-size:22px;margin-bottom:20px;color:#ccc;">
+          Bạn chưa đăng nhập
+        </p>
 
-  <!-- BOX -->
-  <div style="
-      width:420px;
-      padding:25px;
-      border-radius:18px;
-      background:rgba(20,20,20,0.85);
-      box-shadow:0 0 25px rgba(0,255,255,0.3);
-      backdrop-filter:blur(10px);
-  ">
+        <div style="
+            width:420px;
+            padding:25px;
+            border-radius:18px;
+            background:rgba(20,20,20,0.85);
+        ">
 
-    <input id="email" placeholder="Email" style="
-        width:100%;
-        padding:14px;
-        margin:10px 0;
-        border:none;
-        border-radius:10px;
-        font-size:18px;
-        outline:none;
-    ">
+          <input id="email" placeholder="Email" style="
+              width:100%;
+              padding:14px;
+              margin:10px 0;
+              border:none;
+              border-radius:10px;
+              font-size:18px;
+          ">
 
-    <input id="password" type="password" placeholder="Mật khẩu" style="
-        width:100%;
-        padding:14px;
-        margin:10px 0;
-        border:none;
-        border-radius:10px;
-        font-size:18px;
-        outline:none;
-    ">
+          <input id="password" type="password" placeholder="Mật khẩu" style="
+              width:100%;
+              padding:14px;
+              margin:10px 0;
+              border:none;
+              border-radius:10px;
+              font-size:18px;
+          ">
 
-    <button onclick="login()" style="
-        width:100%;
-        padding:14px;
-        margin-top:10px;
-        border:none;
-        border-radius:12px;
-        font-size:18px;
-        cursor:pointer;
-        background:linear-gradient(90deg,cyan,blue);
-        color:white;
-        font-weight:bold;
-    ">
-      ĐĂNG NHẬP
-    </button>
+          <button onclick="login()" style="
+              width:100%;
+              padding:14px;
+              margin-top:10px;
+              border:none;
+              border-radius:12px;
+              font-size:18px;
+              background:linear-gradient(90deg,cyan,blue);
+              color:white;
+          ">
+            ĐĂNG NHẬP
+          </button>
 
-    <button onclick="register()" style="
-        width:100%;
-        padding:14px;
-        margin-top:10px;
-        border:none;
-        border-radius:12px;
-        font-size:18px;
-        cursor:pointer;
-        background:linear-gradient(90deg,violet,blue);
-        color:white;
-        font-weight:bold;
-    ">
-      ĐĂNG KÝ
-    </button>
+          <button onclick="register()" style="
+              width:100%;
+              padding:14px;
+              margin-top:10px;
+              border:none;
+              border-radius:12px;
+              font-size:18px;
+              background:linear-gradient(90deg,violet,blue);
+              color:white;
+          ">
+            ĐĂNG KÝ
+          </button>
 
-  </div>
-</div>
-`);
+        </div>
+      </div>
+    `);
+  }
+}
 </script>
 <script>
 
