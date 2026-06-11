@@ -311,7 +311,7 @@ h1{
 </head>
 
 <body>
-
+<div id="app">
 <div id="stars"></div>
 <div id="transition"></div>
 
@@ -378,6 +378,74 @@ h1{
 
 <!-- BLUR BACKGROUND -->
 <div id="blur"></div>
+    <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC9XD2soTyIk9LzdfhMEDXT8WSuLF5tRkk",
+  authDomain: "qd04-2026.firebaseapp.com",
+  projectId: "qd04-2026",
+  storageBucket: "qd04-2026.firebasestorage.app",
+  messagingSenderId: "211337431663",
+  appId: "1:211337431663:web:52f757b6c16d76ca489b9a",
+  measurementId: "G-6QY8LB7M6B"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+window.register = function(){
+  let email = prompt("Email:");
+  let pass = prompt("Password:");
+
+  createUserWithEmailAndPassword(auth, email, pass)
+    .then(()=>alert("Đăng ký thành công"))
+    .catch(e=>alert(e.message));
+}
+
+window.login = function(){
+  let email = prompt("Email:");
+  let pass = prompt("Password:");
+
+  signInWithEmailAndPassword(auth, email, pass)
+    .then(()=>alert("Đăng nhập thành công"))
+    .catch(()=>alert("Sai tài khoản hoặc mật khẩu"));
+}
+
+window.logout = function(){
+  signOut(auth);
+}
+
+onAuthStateChanged(auth, user => {
+  const app = document.getElementById("app");
+  let loginBox = document.getElementById("loginBox");
+
+  if (user) {
+    app.style.display = "block";
+document.getElementById("loginBox")?.remove();
+  } else {
+    app.style.display = "none";
+
+    // chỉ tạo 1 lần
+    if (!loginBox) {
+      document.body.insertAdjacentHTML("afterbegin", `
+        <div id="loginBox" style="color:white;text-align:center;margin-top:100px">
+          <h1>Bạn chưa đăng nhập</h1>
+          <button onclick="login()">Đăng nhập</button>
+          <button onclick="register()">Đăng ký</button>
+        </div>
+      `);
+    }
+  }
+});
+</script>
 <script>
 
 /* PAGE SWITCH + TRANSITION */
@@ -445,6 +513,6 @@ for(let i=0;i<60;i++){
 }
 
 </script>
-
+</div>
 </body>
 </html>
