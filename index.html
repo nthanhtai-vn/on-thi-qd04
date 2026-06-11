@@ -1,33 +1,210 @@
-<!-- 🌐 MENU VÒNG TRÒN -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TÀI LIỆU ÔN THI ĐÁNH GIÁ NĂNG LỰC BỘ QUỐC PHÒNG</title>
+
+<style>
+body{
+    margin:0;
+    padding:30px;
+    background:#000;
+    font-family:Arial;
+    text-align:center;
+    overflow:hidden;
+}
+
+/* 🌌 SAO */
+#stars{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    opacity:.6;
+    animation:moveStars linear infinite;
+}
+
+@keyframes moveStars{
+    from{transform:translateY(0);}
+    to{transform:translateY(100vh);}
+}
+
+/* TITLE */
+h1{
+    margin-bottom:40px;
+    font-size:32px;
+    font-weight:bold;
+    text-transform:uppercase;
+
+    background:linear-gradient(90deg,red,orange,yellow,lime,cyan,blue,violet,red);
+    background-size:400%;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    animation:rgbText 5s linear infinite;
+}
+
+@keyframes rgbText{
+    0%{background-position:400% 0;}
+    100%{background-position:0% 0;}
+}
+
+/* POSTER */
+.container{
+    display:flex;
+    justify-content:center;
+    gap:50px;
+    flex-wrap:wrap;
+}
+
+.card{width:400px;}
+
+.card img{
+    width:100%;
+    border-radius:12px;
+    transition:.3s;
+    cursor:pointer;
+}
+
+.card img:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 25px cyan;
+}
+
+/* MENU */
+.radial-menu{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    width:120px;
+    height:120px;
+}
+
+/* nút chính */
+.center-btn{
+    position:absolute;
+    bottom:0;
+    right:0;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:linear-gradient(90deg,cyan,blue,violet);
+    color:white;
+    font-size:26px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 0 15px cyan;
+}
+
+.center-btn:hover{
+    transform:scale(1.1);
+}
+
+/* icon */
+.radial-item{
+    position:absolute;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transform:scale(0);
+    opacity:0;
+    transition:.3s;
+}
+
+.radial-item img{
+    width:24px;
+    height:24px;
+    object-fit:contain;
+}
+
+/* màu nền */
+.fb{background:#1877F2;}
+.zalo{background:#00c300;}
+.mess{background:#0084ff;}
+
+/* mở menu */
+.radial-menu.open .fb{
+    transform:translate(-85px,-85px) scale(1);
+    opacity:1;
+}
+
+.radial-menu.open .zalo{
+    transform:translate(0,-115px) scale(1);
+    opacity:1;
+}
+
+.radial-menu.open .mess{
+    transform:translate(-115px,0) scale(1);
+    opacity:1;
+}
+</style>
+</head>
+
+<body>
+
+<div id="stars"></div>
+
+<h1>TÀI LIỆU ÔN THI ĐÁNH GIÁ NĂNG LỰC BỘ QUỐC PHÒNG - QD04</h1>
+
+<div class="container">
+
+<div class="card"><a href="https://wayground.com/join?gc=15993929"><img src="poster-su.png"></a></div>
+<div class="card"><a href="https://wayground.com/join?gc=49417289"><img src="poster-dia.png"></a></div>
+<div class="card"><a href="https://drive.google.com"><img src="dinhtinh.png"></a></div>
+<div class="card"><a href="https://drive.google.com"><img src="dinhluong.png"></a></div>
+
+</div>
+
+<!-- MENU -->
 <div class="radial-menu">
 
-    <a href="https://facebook.com/thanh.tai.207" target="_blank" class="radial-item fb">
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png">
-    </a>
+<a class="radial-item fb" href="https://facebook.com/thanh.tai.207">
+<img src="https://cdn-icons-png.flaticon.com/512/733/733547.png">
+</a>
 
-    <a href="https://zalo.me/0352332842" target="_blank" class="radial-item zalo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg">
-    </a>
+<a class="radial-item zalo" href="https://zalo.me/0352332842">
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg">
+</a>
 
-    <a href="https://m.me/@thanh.tai.207" target="_blank" class="radial-item mess">
-        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111466.png">
-    </a>
+<a class="radial-item mess" href="https://m.me/yourpage">
+<img src="https://cdn-icons-png.flaticon.com/512/2111/2111466.png">
+</a>
 
-    <div class="center-btn" onclick="toggleRadial()">💬</div>
+<div class="center-btn" onclick="toggleMenu()">💬</div>
 
 </div>
 
 <script>
-    for (let i = 0; i < 80; i++) {
-        let star = document.createElement("div");
-        star.className = "star";
-        star.style.left = Math.random() * 100 + "vw";
-        star.style.top = Math.random() * 100 + "vh";
-        star.style.animationDuration = (Math.random() * 5 + 3) + "s";
-        document.getElementById("stars").appendChild(star);
-    }
+for(let i=0;i<80;i++){
+    let s=document.createElement("div");
+    s.className="star";
+    s.style.left=Math.random()*100+"vw";
+    s.style.top=Math.random()*100+"vh";
+    s.style.animationDuration=(Math.random()*5+3)+"s";
+    document.getElementById("stars").appendChild(s);
+}
 
-    function toggleRadial(){
-        document.querySelector(".radial-menu").classList.toggle("open");
-    }
+function toggleMenu(){
+    document.querySelector(".radial-menu").classList.toggle("open");
+}
 </script>
+
+</body>
+</html>
