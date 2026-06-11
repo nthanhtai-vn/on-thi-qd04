@@ -34,13 +34,20 @@ body{
     to{transform:translateY(100vh);}
 }
 
-/* TITLE */
+/* TITLE - KHÔI PHỤC RGB */
 h1{
     text-align:center;
     font-size:22px;
-    background:linear-gradient(90deg,red,orange,yellow,lime,cyan,blue,violet);
+    background:linear-gradient(90deg,red,orange,yellow,lime,cyan,blue,violet,red);
+    background-size:400%;
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
+    animation:rgb 5s linear infinite;
+}
+
+@keyframes rgb{
+    0%{background-position:0%;}
+    100%{background-position:400%;}
 }
 
 /* PAGE */
@@ -57,7 +64,7 @@ h1{
     transform:scale(1);
 }
 
-/* CARD */
+/* CARD - GIỮ SIZE */
 .container{
     display:flex;
     justify-content:center;
@@ -75,7 +82,7 @@ h1{
     box-shadow:0 0 20px cyan;
 }
 
-/* MENU */
+/* MENU DRAG */
 .menu{
     position:fixed;
     top:20px;
@@ -116,7 +123,7 @@ h1{
 }
 .menu-list button:hover{color:cyan;}
 
-/* FLOAT CHAT MENU */
+/* FLOAT CHAT */
 .chat-menu{
     position:fixed;
     bottom:25px;
@@ -157,10 +164,15 @@ h1{
 .zalo{background:#00c300;}
 .mess{background:#0084ff;}
 
-.chat-menu.open .fb{transform:translate(-80px,-80px) scale(1);}
-.chat-menu.open .zalo{transform:translate(0,-110px) scale(1);}
-.chat-menu.open .mess{transform:translate(-110px,0) scale(1);}
-
+.chat-menu.open .fb{
+    transform:translate(-80px,-80px) scale(1);
+}
+.chat-menu.open .zalo{
+    transform:translate(0,-110px) scale(1);
+}
+.chat-menu.open .mess{
+    transform:translate(-110px,0) scale(1);
+}
 </style>
 </head>
 
@@ -173,6 +185,7 @@ h1{
 <!-- MENU -->
 <div class="menu" id="menuBox">
     <div class="menu-btn" id="dragBtn">☰</div>
+
     <div class="menu-list" id="menu">
         <button onclick="show('home')">Trang chủ</button>
         <button onclick="show('luyende')">Luyện đề</button>
@@ -180,7 +193,7 @@ h1{
     </div>
 </div>
 
-<!-- PAGES -->
+<!-- HOME -->
 <div id="home" class="page active">
     <div class="container">
         <a class="card" href="https://wayground.com/1"><img src="poster-su.png"></a>
@@ -190,6 +203,7 @@ h1{
     </div>
 </div>
 
+<!-- LUYỆN ĐỀ (2 poster giống yêu cầu) -->
 <div id="luyende" class="page">
     <div class="container">
         <a class="card" href="https://wayground.com/1"><img src="poster-su.png"></a>
@@ -197,6 +211,7 @@ h1{
     </div>
 </div>
 
+<!-- TÀI LIỆU (đủ 4 poster) -->
 <div id="tailieu" class="page">
     <div class="container">
         <a class="card" href="https://wayground.com/1"><img src="poster-su.png"></a>
@@ -206,7 +221,7 @@ h1{
     </div>
 </div>
 
-<!-- FLOAT MENU -->
+<!-- CHAT -->
 <div class="chat-menu" id="chat">
     <a class="chat-item fb" href="https://facebook.com/thanh.tai.207">f</a>
     <a class="chat-item zalo" href="https://zalo.me/0352332842">z</a>
@@ -216,7 +231,7 @@ h1{
 
 <script>
 
-/* SPA SWITCH */
+/* SWITCH PAGE */
 function show(id){
     document.querySelectorAll('.page').forEach(p=>{
         p.classList.remove('active');
@@ -224,24 +239,26 @@ function show(id){
     document.getElementById(id).classList.add('active');
 }
 
-/* MENU OPEN */
+/* MENU */
 document.getElementById("dragBtn").onclick=()=>{
     let m=document.getElementById("menu");
-    m.style.display = m.style.display==="flex"?"none":"flex";
+    m.style.display = (m.style.display==="flex")?"none":"flex";
 }
 
-/* DRAG MENU */
+/* DRAG */
 let box=document.getElementById("menuBox");
 let drag=document.getElementById("dragBtn");
 let isDrag=false;
 
 drag.onmousedown=()=>isDrag=true;
+
 document.onmousemove=(e)=>{
     if(!isDrag) return;
     box.style.left=e.clientX+"px";
     box.style.top=e.clientY+"px";
     box.style.right="auto";
 };
+
 document.onmouseup=()=>isDrag=false;
 
 /* CHAT */
