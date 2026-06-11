@@ -8,12 +8,10 @@
 <style>
 body{
     margin:0;
-    padding:30px;
-    background:#000;
     font-family:Arial;
-    text-align:center;
-    overflow:hidden;
+    background:#000;
     color:white;
+    overflow:hidden;
 }
 
 /* STAR */
@@ -29,7 +27,7 @@ body{
     height:2px;
     background:white;
     border-radius:50%;
-    animation:fall linear infinite;
+    animation:fall 5s linear infinite;
 }
 @keyframes fall{
     from{transform:translateY(0);}
@@ -38,27 +36,36 @@ body{
 
 /* TITLE */
 h1{
-    font-size:26px;
-    background:linear-gradient(90deg,red,orange,yellow,lime,cyan,blue,violet,red);
+    text-align:center;
+    font-size:22px;
+    background:linear-gradient(90deg,red,orange,yellow,lime,cyan,blue,violet);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
 
-/* CONTENT FADE */
-#content{
-    opacity:1;
+/* PAGE */
+.page{
+    opacity:0;
+    transform:scale(0.98);
     transition:0.4s;
+    display:none;
+    padding:20px;
+}
+.page.active{
+    display:block;
+    opacity:1;
+    transform:scale(1);
 }
 
-/* CARDS */
+/* CARD */
 .container{
     display:flex;
     justify-content:center;
     flex-wrap:wrap;
-    gap:25px;
+    gap:20px;
 }
 .card img{
-    width:300px;
+    width:280px;
     border-radius:12px;
     cursor:pointer;
     transition:0.3s;
@@ -68,12 +75,12 @@ h1{
     box-shadow:0 0 20px cyan;
 }
 
-/* MENU DRAG */
+/* MENU */
 .menu{
     position:fixed;
     top:20px;
     right:20px;
-    z-index:999;
+    z-index:9999;
 }
 
 .menu-btn{
@@ -84,17 +91,16 @@ h1{
     display:flex;
     justify-content:center;
     align-items:center;
-    font-size:24px;
+    font-size:22px;
     cursor:grab;
-    position:relative;
 }
 
 .menu-list{
     display:none;
     flex-direction:column;
     position:absolute;
-    top:65px;
     right:0;
+    top:65px;
     background:#111;
     padding:10px;
     border-radius:10px;
@@ -109,6 +115,52 @@ h1{
     text-align:left;
 }
 .menu-list button:hover{color:cyan;}
+
+/* FLOAT CHAT MENU */
+.chat-menu{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    width:120px;
+    height:120px;
+}
+
+.chat-center{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    background:linear-gradient(90deg,cyan,blue,violet);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    position:absolute;
+    bottom:0;
+    right:0;
+}
+
+.chat-item{
+    position:absolute;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    text-decoration:none;
+    transform:scale(0);
+    transition:0.3s;
+}
+
+.fb{background:#1877F2;}
+.zalo{background:#00c300;}
+.mess{background:#0084ff;}
+
+.chat-menu.open .fb{transform:translate(-80px,-80px) scale(1);}
+.chat-menu.open .zalo{transform:translate(0,-110px) scale(1);}
+.chat-menu.open .mess{transform:translate(-110px,0) scale(1);}
+
 </style>
 </head>
 
@@ -121,84 +173,81 @@ h1{
 <!-- MENU -->
 <div class="menu" id="menuBox">
     <div class="menu-btn" id="dragBtn">☰</div>
-
     <div class="menu-list" id="menu">
-        <button onclick="showPage('home')">🏠 Trang chủ</button>
-        <button onclick="showPage('luyende')">🧠 Luyện đề</button>
-        <button onclick="showPage('tailieu')">📚 Tài liệu</button>
+        <button onclick="show('home')">Trang chủ</button>
+        <button onclick="show('luyende')">Luyện đề</button>
+        <button onclick="show('tailieu')">Tài liệu</button>
     </div>
 </div>
 
-<!-- CONTENT -->
-<div id="content"></div>
+<!-- PAGES -->
+<div id="home" class="page active">
+    <div class="container">
+        <a class="card" href="https://wayground.com/1"><img src="poster-su.png"></a>
+        <a class="card" href="https://wayground.com/2"><img src="poster-dia.png"></a>
+        <a class="card" href="https://drive.google.com/3"><img src="dinhtinh.png"></a>
+        <a class="card" href="https://drive.google.com/4"><img src="dinhluong.png"></a>
+    </div>
+</div>
+
+<div id="luyende" class="page">
+    <div class="container">
+        <a class="card" href="https://wayground.com/1"><img src="poster-su.png"></a>
+        <a class="card" href="https://wayground.com/2"><img src="poster-dia.png"></a>
+    </div>
+</div>
+
+<div id="tailieu" class="page">
+    <div class="container">
+        <a class="card" href="https://wayground.com/1"><img src="poster-su.png"></a>
+        <a class="card" href="https://wayground.com/2"><img src="poster-dia.png"></a>
+        <a class="card" href="https://drive.google.com/3"><img src="dinhtinh.png"></a>
+        <a class="card" href="https://drive.google.com/4"><img src="dinhluong.png"></a>
+    </div>
+</div>
+
+<!-- FLOAT MENU -->
+<div class="chat-menu" id="chat">
+    <a class="chat-item fb" href="https://facebook.com/thanh.tai.207">f</a>
+    <a class="chat-item zalo" href="https://zalo.me/">z</a>
+    <a class="chat-item mess" href="https://m.me/">m</a>
+    <div class="chat-center" onclick="toggleChat()">💬</div>
+</div>
 
 <script>
 
-/* DATA ĐÚNG LẠI */
-const home = `
-<div class="container">
-<a class="card" href="https://wayground.com/1" target="_blank"><img src="poster-su.png"></a>
-<a class="card" href="https://wayground.com/2" target="_blank"><img src="poster-dia.png"></a>
-<a class="card" href="https://drive.google.com/3" target="_blank"><img src="dinhtinh.png"></a>
-<a class="card" href="https://drive.google.com/4" target="_blank"><img src="dinhluong.png"></a>
-</div>`;
-
-const luyende = `
-<div class="container">
-<a class="card" href="https://wayground.com/1" target="_blank"><img src="poster-su.png"></a>
-<a class="card" href="https://wayground.com/2" target="_blank"><img src="poster-dia.png"></a>
-</div>`;
-
-const tailieu = `
-<div class="container">
-<a class="card" href="https://wayground.com/1" target="_blank"><img src="poster-su.png"></a>
-<a class="card" href="https://wayground.com/2" target="_blank"><img src="poster-dia.png"></a>
-<a class="card" href="https://drive.google.com/3" target="_blank"><img src="dinhtinh.png"></a>
-<a class="card" href="https://drive.google.com/4" target="_blank"><img src="dinhluong.png"></a>
-</div>`;
-
-/* FADE SWITCH */
-function showPage(page){
-    let c = document.getElementById("content");
-    c.style.opacity = 0;
-
-    setTimeout(()=>{
-        if(page==="home") c.innerHTML = home;
-        if(page==="luyende") c.innerHTML = luyende;
-        if(page==="tailieu") c.innerHTML = tailieu;
-        c.style.opacity = 1;
-    },200);
+/* SPA SWITCH */
+function show(id){
+    document.querySelectorAll('.page').forEach(p=>{
+        p.classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
 }
 
-/* MENU TOGGLE */
-document.getElementById("dragBtn").onclick = ()=>{
-    let m = document.getElementById("menu");
+/* MENU OPEN */
+document.getElementById("dragBtn").onclick=()=>{
+    let m=document.getElementById("menu");
     m.style.display = m.style.display==="flex"?"none":"flex";
-};
+}
 
 /* DRAG MENU */
-let box = document.getElementById("menuBox");
-let drag = document.getElementById("dragBtn");
+let box=document.getElementById("menuBox");
+let drag=document.getElementById("dragBtn");
+let isDrag=false;
 
-let isDrag = false;
-
-drag.addEventListener("mousedown", e=>{
-    isDrag = true;
-});
-
-document.addEventListener("mousemove", e=>{
+drag.onmousedown=()=>isDrag=true;
+document.onmousemove=(e)=>{
     if(!isDrag) return;
-    box.style.left = e.clientX + "px";
-    box.style.top = e.clientY + "px";
-    box.style.right = "auto";
-});
+    box.style.left=e.clientX+"px";
+    box.style.top=e.clientY+"px";
+    box.style.right="auto";
+};
+document.onmouseup=()=>isDrag=false;
 
-document.addEventListener("mouseup", ()=>{
-    isDrag = false;
-});
-
-/* INIT */
-showPage("home");
+/* CHAT */
+function toggleChat(){
+    document.getElementById("chat").classList.toggle("open");
+}
 
 /* STAR */
 for(let i=0;i<60;i++){
@@ -206,7 +255,6 @@ for(let i=0;i<60;i++){
     s.className="star";
     s.style.left=Math.random()*100+"vw";
     s.style.top=Math.random()*100+"vh";
-    s.style.animationDuration=(Math.random()*5+3)+"s";
     document.getElementById("stars").appendChild(s);
 }
 
