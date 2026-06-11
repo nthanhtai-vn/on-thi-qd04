@@ -66,130 +66,56 @@
     width:100%;
     border-radius:12px;
     box-shadow:0 0 15px rgba(255,255,255,0.2);
-    transition:0.3s;
+    transition:all .3s ease;
 }
 
 .card img:hover{
     transform:scale(1.05);
-}
-        .btn{
-    position: relative;
-    display: inline-block;
-    margin-top: 15px;
-    padding: 15px 35px;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 12px;
-    background: #111;
-    overflow: hidden;
-    z-index: 1;
-    transition: 0.3s;
-
-    animation: glow 2s ease-in-out infinite alternate;
-}
-
-.btn:hover{
-    transform: scale(1.08);
-    box-shadow: 0 0 25px rgba(255,255,255,0.8);
-}
-
-.btn::before{
-    content: "";
-    position: absolute;
-    top: -3px;
-    left: -3px;
-    right: -3px;
-    bottom: -3px;
-    background: linear-gradient(
-        90deg,
-        red,
-        orange,
-        yellow,
-        lime,
-        cyan,
-        blue,
-        violet,
-        red
-    );
-    background-size: 400%;
-    border-radius: 15px;
-    z-index: -2;
-    animation: rgb-border 4s linear infinite;
-}
-@keyframes glow{
-    from{
-        box-shadow:
-        0 0 10px red,
-        0 0 20px orange,
-        0 0 30px yellow;
-    }
-
-    to{
-        box-shadow:
+    box-shadow:
         0 0 20px cyan,
         0 0 40px blue,
         0 0 60px violet;
-    }
 }
-.btn::after{
-    content: "";
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    right: 3px;
-    bottom: 3px;
-    background: #111;
-    border-radius: 10px;
-    z-index: -1;
-}
-
-@keyframes rgb-border{
-    0%{
-        background-position: 0%;
-    }
-    100%{
-        background-position: 400%;
-    }
-}
+        
     </style>
 </head>
 <body>
 
     <h1>
-        TÀI LIỆU ÔN THI ĐÁNH GIÁ NĂNG LỰC BỘ QUỐC PHÒNG - QD04 SỬ - ĐỊA
+        TÀI LIỆU ÔN THI ĐÁNH GIÁ NĂNG LỰC BỘ QUỐC PHÒNG - QD04
     </h1>
 
     <div class="container">
 
-        <!-- Poster Sử -->
-        <div class="card">
+    <!-- Poster Sử -->
+    <div class="card">
+        <a href="https://wayground.com/join?gc=15993929&source=liveDashboard" target="_blank">
             <img src="poster-su.png" alt="Poster Lịch Sử">
-
-            <br>
-
-            <a class="btn"
-               href="https://wayground.com/join?gc=40862793&source=liveDashboard"
-               target="_blank">
-                Bắt đầu làm bài
-            </a>
-        </div>
-
-        <!-- Poster Địa -->
-        <div class="card">
-            <img src="poster-dia.png" alt="Poster Địa Lý">
-
-            <br>
-
-            <a class="btn"
-               href="https://wayground.com/join?gc=11764809&source=liveDashboard"
-               target="_blank">
-                Bắt đầu làm bài
-            </a>
-        </div>
-
+        </a>
     </div>
+
+    <!-- Poster Địa -->
+    <div class="card">
+        <a href="https://wayground.com/join?gc=49417289&source=liveDashboard" target="_blank">
+            <img src="poster-dia.png" alt="Poster Địa Lý">
+        </a>
+    </div>
+
+    <!-- Poster Định Tính -->
+    <div class="card">
+        <a href="https://drive.google.com/drive/folders/1XjkgB0eCab9F9WjYYCW_Ls7Qgza83J1B" target="_blank">
+            <img src="dinhtinh.png" alt="Poster Định Tính">
+        </a>
+    </div>
+
+    <!-- Poster Định Lượng -->
+    <div class="card">
+        <a href="https://drive.google.com/drive/folders/15Imf-08fg8yrheXhrrH_b-YWzosJc47d" target="_blank">
+            <img src="dinhluong.png" alt="Poster Định Lượng">
+        </a>
+    </div>
+
+</div>
 
 </body>
 </html>
