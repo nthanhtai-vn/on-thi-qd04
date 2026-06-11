@@ -12,6 +12,38 @@
             background:#000;
             font-family:Arial, Helvetica, sans-serif;
             text-align:center;
+            overflow:hidden;
+        }
+
+        /* 🌌 NỀN SAO */
+        #stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: moveStars linear infinite;
+        }
+
+        @keyframes moveStars {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(100vh);
+            }
         }
 
         h1{
@@ -56,11 +88,8 @@
             flex-wrap:wrap;
         }
 
-        /* ===== HIỆU ỨNG XUẤT HIỆN ===== */
         .card{
             width:400px;
-            opacity:0;
-            animation: fadeInUp 0.8s ease forwards;
         }
 
         .card img{
@@ -79,27 +108,13 @@
                 0 0 60px violet;
         }
 
-        /* Delay xuất hiện từng poster */
-        .card:nth-child(1){ animation-delay:0.2s; }
-        .card:nth-child(2){ animation-delay:0.4s; }
-        .card:nth-child(3){ animation-delay:0.6s; }
-        .card:nth-child(4){ animation-delay:0.8s; }
-
-        @keyframes fadeInUp{
-            from{
-                opacity:0;
-                transform:translateY(30px);
-            }
-            to{
-                opacity:1;
-                transform:translateY(0);
-            }
-        }
-
     </style>
 </head>
 
 <body>
+
+    <!-- 🌌 SAO BAY -->
+    <div id="stars"></div>
 
     <h1>
         TÀI LIỆU ÔN THI ĐÁNH GIÁ NĂNG LỰC BỘ QUỐC PHÒNG - QD04
@@ -136,6 +151,18 @@
         </div>
 
     </div>
+
+    <!-- JS tạo sao -->
+    <script>
+        for (let i = 0; i < 80; i++) {
+            let star = document.createElement("div");
+            star.className = "star";
+            star.style.left = Math.random() * 100 + "vw";
+            star.style.top = Math.random() * 100 + "vh";
+            star.style.animationDuration = (Math.random() * 5 + 3) + "s";
+            document.getElementById("stars").appendChild(star);
+        }
+    </script>
 
 </body>
 </html>
