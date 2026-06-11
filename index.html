@@ -15,42 +15,40 @@
         }
 
         h1{
-    margin-bottom:40px;
-    font-size:32px;
-    text-transform:uppercase;
-    font-weight:bold;
+            margin-bottom:40px;
+            font-size:32px;
+            text-transform:uppercase;
+            font-weight:bold;
 
-    background: linear-gradient(
-        90deg,
-        red,
-        orange,
-        yellow,
-        lime,
-        cyan,
-        blue,
-        violet,
-        red
-    );
+            background: linear-gradient(
+                90deg,
+                red,
+                orange,
+                yellow,
+                lime,
+                cyan,
+                blue,
+                violet,
+                red
+            );
 
-    background-size: 400%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+            background-size: 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
 
-    animation: rgbText 5s linear infinite;
+            animation: rgbText 5s linear infinite;
 
-    text-shadow:
-        0 0 10px rgba(255,255,255,0.5),
-        0 0 20px rgba(255,255,255,0.3),
-        0 0 30px rgba(255,255,255,0.2);
-}
-@keyframes rgbText{
-    0%{
-        background-position: 400% 0;
-    }
-    100%{
-        background-position: 0% 0;
-    }
-}
+            text-shadow:
+                0 0 10px rgba(255,255,255,0.5),
+                0 0 20px rgba(255,255,255,0.3),
+                0 0 30px rgba(255,255,255,0.2);
+        }
+
+        @keyframes rgbText{
+            0%{ background-position: 400% 0; }
+            100%{ background-position: 0% 0; }
+        }
+
         .container{
             display:flex;
             justify-content:center;
@@ -58,27 +56,49 @@
             flex-wrap:wrap;
         }
 
+        /* ===== HIỆU ỨNG XUẤT HIỆN ===== */
         .card{
-    width:400px;
-}
+            width:400px;
+            opacity:0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
 
-.card img{
-    width:100%;
-    border-radius:12px;
-    box-shadow:0 0 15px rgba(255,255,255,0.2);
-    transition:all .3s ease;
-}
+        .card img{
+            width:100%;
+            border-radius:12px;
+            box-shadow:0 0 15px rgba(255,255,255,0.2);
+            transition:all .3s ease;
+            cursor:pointer;
+        }
 
-.card img:hover{
-    transform:scale(1.05);
-    box-shadow:
-        0 0 20px cyan,
-        0 0 40px blue,
-        0 0 60px violet;
-}
-        
+        .card img:hover{
+            transform:scale(1.05);
+            box-shadow:
+                0 0 20px cyan,
+                0 0 40px blue,
+                0 0 60px violet;
+        }
+
+        /* Delay xuất hiện từng poster */
+        .card:nth-child(1){ animation-delay:0.2s; }
+        .card:nth-child(2){ animation-delay:0.4s; }
+        .card:nth-child(3){ animation-delay:0.6s; }
+        .card:nth-child(4){ animation-delay:0.8s; }
+
+        @keyframes fadeInUp{
+            from{
+                opacity:0;
+                transform:translateY(30px);
+            }
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
     </style>
 </head>
+
 <body>
 
     <h1>
@@ -87,35 +107,35 @@
 
     <div class="container">
 
-    <!-- Poster Sử -->
-    <div class="card">
-        <a href="https://wayground.com/join?gc=15993929&source=liveDashboard" target="_blank">
-            <img src="poster-su.png" alt="Poster Lịch Sử">
-        </a>
-    </div>
+        <!-- Poster Sử -->
+        <div class="card">
+            <a href="https://wayground.com/join?gc=15993929&source=liveDashboard" target="_blank">
+                <img src="poster-su.png" alt="Poster Lịch Sử">
+            </a>
+        </div>
 
-    <!-- Poster Địa -->
-    <div class="card">
-        <a href="https://wayground.com/join?gc=49417289&source=liveDashboard" target="_blank">
-            <img src="poster-dia.png" alt="Poster Địa Lý">
-        </a>
-    </div>
+        <!-- Poster Địa -->
+        <div class="card">
+            <a href="https://wayground.com/join?gc=49417289&source=liveDashboard" target="_blank">
+                <img src="poster-dia.png" alt="Poster Địa Lý">
+            </a>
+        </div>
 
-    <!-- Poster Định Tính -->
-    <div class="card">
-        <a href="https://drive.google.com/drive/folders/1XjkgB0eCab9F9WjYYCW_Ls7Qgza83J1B" target="_blank">
-            <img src="dinhtinh.png" alt="Poster Định Tính">
-        </a>
-    </div>
+        <!-- Poster Định Tính -->
+        <div class="card">
+            <a href="https://drive.google.com/drive/folders/1XjkgB0eCab9F9WjYYCW_Ls7Qgza83J1B" target="_blank">
+                <img src="dinhtinh.png" alt="Poster Định Tính">
+            </a>
+        </div>
 
-    <!-- Poster Định Lượng -->
-    <div class="card">
-        <a href="https://drive.google.com/drive/folders/15Imf-08fg8yrheXhrrH_b-YWzosJc47d" target="_blank">
-            <img src="dinhluong.png" alt="Poster Định Lượng">
-        </a>
-    </div>
+        <!-- Poster Định Lượng -->
+        <div class="card">
+            <a href="https://drive.google.com/drive/folders/15Imf-08fg8yrheXhrrH_b-YWzosJc47d" target="_blank">
+                <img src="dinhluong.png" alt="Poster Định Lượng">
+            </a>
+        </div>
 
-</div>
+    </div>
 
 </body>
 </html>
