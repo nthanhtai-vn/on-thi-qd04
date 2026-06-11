@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SPA ÔN THI PRO</title>
+<title>SPA PRO - TÀI LIỆU ÔN THI</title>
 
 <style>
 body{
@@ -13,148 +13,129 @@ body{
     font-family:Arial;
     text-align:center;
     overflow:hidden;
+    color:white;
 }
 
 /* 🌌 STAR */
 #stars{
     position:fixed;
-    top:0;left:0;
-    width:100%;height:100%;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
     z-index:-1;
 }
 .star{
     position:absolute;
-    width:2px;height:2px;
-    background:#fff;
+    width:2px;
+    height:2px;
+    background:white;
     border-radius:50%;
     opacity:0.6;
     animation:fall linear infinite;
 }
 @keyframes fall{
-    from{transform:translateY(0)}
-    to{transform:translateY(100vh)}
+    from{transform:translateY(0);}
+    to{transform:translateY(100vh);}
 }
 
 /* TITLE */
 h1{
     font-size:28px;
-    color:transparent;
-    background:linear-gradient(90deg,red,orange,yellow,cyan,blue,violet,red);
+    text-transform:uppercase;
+    background:linear-gradient(90deg,red,orange,yellow,lime,cyan,blue,violet,red);
     background-size:400%;
     -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
     animation:rgb 5s linear infinite;
 }
 @keyframes rgb{
-    0%{background-position:400%}
-    100%{background-position:0%}
+    0%{background-position:400%;}
+    100%{background-position:0%;}
 }
 
-/* PAGE SYSTEM */
-.page{
-    display:none;
-}
-.page.active{
-    display:block;
-}
-
-/* CARD */
+/* CONTAINER */
 .container{
     display:flex;
-    flex-wrap:wrap;
     justify-content:center;
-    gap:40px;
+    flex-wrap:wrap;
+    gap:30px;
+    margin-top:20px;
 }
+
 .card img{
     width:320px;
     border-radius:12px;
-    transition:.3s;
+    transition:0.3s;
+    cursor:pointer;
 }
 .card img:hover{
     transform:scale(1.05);
+    box-shadow:0 0 25px cyan;
 }
 
-/* MENU TOP */
-.top-menu{
+/* MENU */
+.menu{
     position:fixed;
     top:20px;
     right:20px;
-    z-index:999;
 }
+
 .menu-btn{
-    width:50px;height:50px;
+    width:55px;
+    height:55px;
+    border-radius:50%;
     background:linear-gradient(90deg,cyan,blue,violet);
-    border-radius:10px;
     display:flex;
     justify-content:center;
     align-items:center;
-    cursor:pointer;
-    color:#fff;
     font-size:24px;
+    cursor:pointer;
 }
-.dropdown{
+
+.menu-list{
     display:none;
+    flex-direction:column;
     position:absolute;
-    top:60px;
     right:0;
+    top:65px;
     background:#111;
+    padding:10px;
     border-radius:10px;
-    overflow:hidden;
 }
-.dropdown a{
+
+.menu-list button{
+    background:none;
+    border:none;
+    color:white;
+    padding:10px;
+    text-align:left;
+    cursor:pointer;
+}
+
+.menu-list button:hover{
+    color:cyan;
+}
+
+/* CONTACT */
+.contact{
+    display:none;
+    position:fixed;
+    bottom:80px;
+    right:20px;
+    background:#111;
+    padding:15px;
+    border-radius:10px;
+}
+
+.contact a{
     display:block;
-    padding:12px;
-    color:#fff;
+    color:white;
+    margin:8px 0;
     text-decoration:none;
 }
-.dropdown a:hover{
-    background:cyan;
-    color:black;
-}
-.top-menu.open .dropdown{
-    display:block;
-}
-
-/* BOTTOM MENU */
-.radial{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-}
-.main-btn{
-    width:60px;height:60px;
-    border-radius:50%;
-    background:linear-gradient(90deg,cyan,blue,violet);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    cursor:pointer;
-    color:#fff;
-    font-size:22px;
-}
-.items{
-    position:absolute;
-    bottom:70px;
-    right:0;
-}
-.item{
-    width:45px;height:45px;
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    margin:8px 0;
-    transform:scale(0);
-    transition:.3s;
-}
-.radial.open .item{
-    transform:scale(1);
-}
-.fb{background:#1877F2}
-.zalo{background:#00c300}
-.mess{background:#0084ff}
-
-img{
-    max-width:100%;
+.contact a:hover{
+    color:cyan;
 }
 </style>
 </head>
@@ -163,88 +144,81 @@ img{
 
 <div id="stars"></div>
 
-<!-- MENU TOP -->
-<div class="top-menu" id="topMenu">
-<div class="menu-btn" onclick="toggleMenu()">☰</div>
-<div class="dropdown">
-<a onclick="showPage('home')">🏠 Trang chủ</a>
-<a onclick="showPage('docs')">📚 Tài liệu</a>
-<a onclick="showPage('exam')">📝 Luyện đề</a>
-<a onclick="showPage('contact')">💬 Liên hệ</a>
-</div>
+<h1>ÔN THI ĐÁNH GIÁ NĂNG LỰC BỘ QUỐC PHÒNG</h1>
+
+<!-- MENU -->
+<div class="menu">
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <div class="menu-list" id="menu">
+        <button onclick="showPage('home')">🏠 Trang chủ</button>
+        <button onclick="showPage('luyende')">🧠 Luyện đề</button>
+        <button onclick="showPage('tailieu')">📚 Tài liệu</button>
+        <button onclick="toggleContact()">💬 Liên hệ</button>
+    </div>
 </div>
 
-<h1>ÔN THI ĐÁNH GIÁ NĂNG LỰC</h1>
-
-<!-- PAGES -->
-<div id="home" class="page active">
-<div class="container">
-<div class="card"><img src="poster-su.png"></div>
-<div class="card"><img src="poster-dia.png"></div>
-<div class="card"><img src="dinhtinh.png"></div>
-<div class="card"><img src="dinhluong.png"></div>
-</div>
+<!-- CONTACT -->
+<div class="contact" id="contact">
+    <a href="https://facebook.com/thanh.tai.207" target="_blank">Facebook</a>
+    <a href="https://zalo.me/0352332842" target="_blank">Zalo</a>
+    <a href="https://m.me/" target="_blank">Messenger</a>
 </div>
 
-<div id="docs" class="page">
-<h2 style="color:white">📚 TÀI LIỆU</h2>
-<div class="container">
-<div class="card"><img src="dinhtinh.png"></div>
-<div class="card"><img src="dinhluong.png"></div>
-<div class="card"><img src="poster-su.png"></div>
-<div class="card"><img src="poster-dia.png"></div>
-</div>
-</div>
-
-<div id="exam" class="page">
-<h2 style="color:white">📝 LUYỆN ĐỀ</h2>
-<div class="container">
-<div class="card"><img src="poster-su.png"></div>
-<div class="card"><img src="poster-dia.png"></div>
-</div>
-</div>
-
-<div id="contact" class="page">
-<h2 style="color:white">LIÊN HỆ</h2>
-</div>
-
-<!-- BOTTOM MENU -->
-<div class="radial" id="radial">
-<div class="main-btn" onclick="toggleRadial()">💬</div>
-<div class="items">
-<div class="item fb">f</div>
-<div class="item zalo">z</div>
-<div class="item mess">m</div>
-</div>
-</div>
+<!-- CONTENT -->
+<div id="content"></div>
 
 <script>
-// STAR
-for(let i=0;i<60;i++){
-let s=document.createElement("div");
-s.className="star";
-s.style.left=Math.random()*100+"vw";
-s.style.top=Math.random()*100+"vh";
-s.style.animationDuration=(Math.random()*5+3)+"s";
-document.getElementById("stars").appendChild(s);
+
+// DATA POSTER
+const home = `
+<div class="container">
+<a class="card" href="https://wayground.com/join?gc=15993929" target="_blank"><img src="poster-su.png"></a>
+<a class="card" href="https://wayground.com/join?gc=49417289" target="_blank"><img src="poster-dia.png"></a>
+<a class="card" href="https://drive.google.com/drive/folders/1XjkgB0eCab9F9WjYYCW_Ls7Qgza83J1B" target="_blank"><img src="dinhtinh.png"></a>
+<a class="card" href="https://drive.google.com/drive/folders/15Imf-08fg8yrheXhrrH_b-YWzosJc47d" target="_blank"><img src="dinhluong.png"></a>
+</div>`;
+
+const luyende = `
+<div class="container">
+<a class="card" href="https://wayground.com/join?gc=15993929" target="_blank"><img src="poster-su.png"></a>
+<a class="card" href="https://wayground.com/join?gc=49417289" target="_blank"><img src="poster-dia.png"></a>
+</div>`;
+
+const tailieu = `
+<div class="container">
+<a class="card" href="https://drive.google.com/drive/folders/1XjkgB0eCab9F9WjYYCW_Ls7Qgza83J1B" target="_blank"><img src="dinhtinh.png"></a>
+<a class="card" href="https://drive.google.com/drive/folders/15Imf-08fg8yrheXhrrH_b-YWzosJc47d" target="_blank"><img src="dinhluong.png"></a>
+</div>`;
+
+function showPage(page){
+    if(page === "home") document.getElementById("content").innerHTML = home;
+    if(page === "luyende") document.getElementById("content").innerHTML = luyende;
+    if(page === "tailieu") document.getElementById("content").innerHTML = tailieu;
 }
 
-// MENU TOP
 function toggleMenu(){
-document.getElementById("topMenu").classList.toggle("open");
+    document.getElementById("menu").style.display =
+    document.getElementById("menu").style.display === "flex" ? "none" : "flex";
 }
 
-// RADIAL
-function toggleRadial(){
-document.getElementById("radial").classList.toggle("open");
+function toggleContact(){
+    let c = document.getElementById("contact");
+    c.style.display = c.style.display === "block" ? "none" : "block";
 }
 
-// SPA PAGE SWITCH
-function showPage(id){
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-document.getElementById(id).classList.add("active");
-document.getElementById("topMenu").classList.remove("open");
+// init
+showPage("home");
+
+// stars
+for(let i=0;i<80;i++){
+    let s=document.createElement("div");
+    s.className="star";
+    s.style.left=Math.random()*100+"vw";
+    s.style.top=Math.random()*100+"vh";
+    s.style.animationDuration=(Math.random()*5+3)+"s";
+    document.getElementById("stars").appendChild(s);
 }
+
 </script>
 
 </body>
