@@ -104,35 +104,72 @@
                 0 0 60px violet;
         }
 
-        /* 💬 NÚT HỖ TRỢ */
-        .support-btn{
+        /* 🌐 MENU VÒNG TRÒN */
+        .radial-menu{
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 25px;
+            right: 25px;
+            width: 120px;
+            height: 120px;
+            z-index: 999;
+        }
+
+        .center-btn{
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
             background: linear-gradient(90deg, cyan, blue, violet);
             color: white;
-            padding: 12px 18px;
-            border-radius: 50px;
-            text-decoration: none;
+            font-size: 28px;
             font-weight: bold;
-            font-size: 16px;
-            box-shadow: 0 0 15px rgba(0,255,255,0.5);
-            z-index: 999;
-            transition: 0.3s;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            cursor:pointer;
+            box-shadow:0 0 15px rgba(0,255,255,0.5);
+            transition:0.3s;
         }
 
-        .support-btn:hover{
+        .center-btn:hover{
             transform: scale(1.1);
-            box-shadow: 0 0 25px rgba(0,255,255,0.8);
         }
 
-        @media (max-width: 600px){
-            .support-btn{
-                bottom: 15px;
-                right: 15px;
-                font-size: 14px;
-                padding: 10px 14px;
-            }
+        .radial-item{
+            position: absolute;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            text-decoration:none;
+            color:white;
+            font-size:18px;
+            transform: scale(0);
+            opacity:0;
+            transition:0.3s;
+        }
+
+        .fb{ background:#1877F2; }
+        .zalo{ background:#00c300; }
+        .mess{ background:#0084ff; }
+
+        .radial-menu.open .fb{
+            transform: translate(-70px, -70px) scale(1);
+            opacity:1;
+        }
+
+        .radial-menu.open .zalo{
+            transform: translate(0px, -100px) scale(1);
+            opacity:1;
+        }
+
+        .radial-menu.open .mess{
+            transform: translate(-100px, 0px) scale(1);
+            opacity:1;
         }
 
     </style>
@@ -149,28 +186,24 @@
 
     <div class="container">
 
-        <!-- Poster Sử -->
         <div class="card">
             <a href="https://wayground.com/join?gc=15993929&source=liveDashboard" target="_blank">
                 <img src="poster-su.png" alt="Poster Lịch Sử">
             </a>
         </div>
 
-        <!-- Poster Địa -->
         <div class="card">
             <a href="https://wayground.com/join?gc=49417289&source=liveDashboard" target="_blank">
                 <img src="poster-dia.png" alt="Poster Địa Lý">
             </a>
         </div>
 
-        <!-- Poster Định Tính -->
         <div class="card">
             <a href="https://drive.google.com/drive/folders/1XjkgB0eCab9F9WjYYCW_Ls7Qgza83J1B" target="_blank">
                 <img src="dinhtinh.png" alt="Poster Định Tính">
             </a>
         </div>
 
-        <!-- Poster Định Lượng -->
         <div class="card">
             <a href="https://drive.google.com/drive/folders/15Imf-08fg8yrheXhrrH_b-YWzosJc47d" target="_blank">
                 <img src="dinhluong.png" alt="Poster Định Lượng">
@@ -179,10 +212,14 @@
 
     </div>
 
-    <!-- 💬 NÚT LIÊN HỆ HỖ TRỢ -->
-    <a href="https://www.facebook.com/thanh.tai.207" class="support-btn" target="_blank">
-        💬 Liên hệ hỗ trợ
-    </a>
+    <!-- 🌐 MENU VÒNG TRÒN -->
+    <div class="radial-menu">
+        <a href="https://facebook.com/thanh.tai.207" target="_blank" class="radial-item fb">f</a>
+        <a href="https://zalo.me/0352332842" target="_blank" class="radial-item zalo">z</a>
+        <a href="https://m.me/@thanh.tai.207" target="_blank" class="radial-item mess">m</a>
+
+        <div class="center-btn" onclick="toggleRadial()">+</div>
+    </div>
 
     <!-- JS tạo sao -->
     <script>
@@ -193,6 +230,10 @@
             star.style.top = Math.random() * 100 + "vh";
             star.style.animationDuration = (Math.random() * 5 + 3) + "s";
             document.getElementById("stars").appendChild(star);
+        }
+
+        function toggleRadial(){
+            document.querySelector(".radial-menu").classList.toggle("open");
         }
     </script>
 
