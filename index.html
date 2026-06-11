@@ -148,6 +148,7 @@
             text-decoration:none;
             color:white;
             font-size:18px;
+
             transform: scale(0);
             opacity:0;
             transition:0.3s;
@@ -157,18 +158,19 @@
         .zalo{ background:#00c300; }
         .mess{ background:#0084ff; }
 
+        /* ✨ BUNG MENU (SỬA LẠI CHO CHUẨN) */
         .radial-menu.open .fb{
-            transform: translate(-70px, -70px) scale(1);
+            transform: translate(-80px, -80px) scale(1);
             opacity:1;
         }
 
         .radial-menu.open .zalo{
-            transform: translate(0px, -100px) scale(1);
+            transform: translate(0px, -110px) scale(1);
             opacity:1;
         }
 
         .radial-menu.open .mess{
-            transform: translate(-100px, 0px) scale(1);
+            transform: translate(-110px, 0px) scale(1);
             opacity:1;
         }
 
@@ -214,14 +216,16 @@
 
     <!-- 🌐 MENU VÒNG TRÒN -->
     <div class="radial-menu">
+
         <a href="https://facebook.com/thanh.tai.207" target="_blank" class="radial-item fb">f</a>
         <a href="https://zalo.me/0352332842" target="_blank" class="radial-item zalo">z</a>
         <a href="https://m.me/@thanh.tai.207" target="_blank" class="radial-item mess">m</a>
 
         <div class="center-btn" onclick="toggleRadial()">+</div>
+
     </div>
 
-    <!-- JS tạo sao -->
+    <!-- JS tạo sao + toggle -->
     <script>
         for (let i = 0; i < 80; i++) {
             let star = document.createElement("div");
