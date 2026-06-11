@@ -118,13 +118,12 @@
             position: absolute;
             bottom: 0;
             right: 0;
-            width: 55px;
-            height: 55px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background: linear-gradient(90deg, cyan, blue, violet);
             color: white;
-            font-size: 28px;
-            font-weight: bold;
+            font-size: 26px;
             display:flex;
             justify-content:center;
             align-items:center;
@@ -146,19 +145,22 @@
             justify-content:center;
             align-items:center;
             text-decoration:none;
-            color:white;
-            font-size:18px;
-
+            background:white;
             transform: scale(0);
             opacity:0;
             transition:0.3s;
         }
 
+        .radial-item img{
+            width: 25px;
+            height: 25px;
+        }
+
+        /* FB ZALO MESS */
         .fb{ background:#1877F2; }
         .zalo{ background:#00c300; }
         .mess{ background:#0084ff; }
 
-        /* ✨ BUNG MENU (SỬA LẠI CHO CHUẨN) */
         .radial-menu.open .fb{
             transform: translate(-80px, -80px) scale(1);
             opacity:1;
@@ -217,15 +219,23 @@
     <!-- 🌐 MENU VÒNG TRÒN -->
     <div class="radial-menu">
 
-        <a href="https://facebook.com/thanh.tai.207" target="_blank" class="radial-item fb">f</a>
-        <a href="https://zalo.me/0352332842" target="_blank" class="radial-item zalo">z</a>
-        <a href="https://m.me/@thanh.tai.207" target="_blank" class="radial-item mess">m</a>
+        <a href="https://facebook.com/thanh.tai.207" target="_blank" class="radial-item fb">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png">
+        </a>
 
-        <div class="center-btn" onclick="toggleRadial()">+</div>
+        <a href="https://zalo.me/0352332842" target="_blank" class="radial-item zalo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg">
+        </a>
+
+        <a href="https://m.me/@thanh.tai.207" target="_blank" class="radial-item mess">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111466.png">
+        </a>
+
+        <div class="center-btn" onclick="toggleRadial()">💬</div>
 
     </div>
 
-    <!-- JS tạo sao + toggle -->
+    <!-- JS -->
     <script>
         for (let i = 0; i < 80; i++) {
             let star = document.createElement("div");
