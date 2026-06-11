@@ -16,11 +16,9 @@ body{
     color:white;
 }
 
-/* 🌌 STAR */
+/* STAR */
 #stars{
     position:fixed;
-    top:0;
-    left:0;
     width:100%;
     height:100%;
     z-index:-1;
@@ -31,7 +29,6 @@ body{
     height:2px;
     background:white;
     border-radius:50%;
-    opacity:0.6;
     animation:fall linear infinite;
 }
 @keyframes fall{
@@ -41,44 +38,42 @@ body{
 
 /* TITLE */
 h1{
-    font-size:28px;
-    text-transform:uppercase;
+    font-size:26px;
     background:linear-gradient(90deg,red,orange,yellow,lime,cyan,blue,violet,red);
-    background-size:400%;
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
-    animation:rgb 5s linear infinite;
-}
-@keyframes rgb{
-    0%{background-position:400%;}
-    100%{background-position:0%;}
 }
 
-/* CONTAINER */
+/* CONTENT FADE */
+#content{
+    opacity:1;
+    transition:0.4s;
+}
+
+/* CARDS */
 .container{
     display:flex;
     justify-content:center;
     flex-wrap:wrap;
-    gap:30px;
-    margin-top:20px;
+    gap:25px;
 }
-
 .card img{
-    width:320px;
+    width:300px;
     border-radius:12px;
-    transition:0.3s;
     cursor:pointer;
+    transition:0.3s;
 }
 .card img:hover{
     transform:scale(1.05);
-    box-shadow:0 0 25px cyan;
+    box-shadow:0 0 20px cyan;
 }
 
-/* MENU */
+/* MENU DRAG */
 .menu{
     position:fixed;
     top:20px;
     right:20px;
+    z-index:999;
 }
 
 .menu-btn{
@@ -90,15 +85,16 @@ h1{
     justify-content:center;
     align-items:center;
     font-size:24px;
-    cursor:pointer;
+    cursor:grab;
+    position:relative;
 }
 
 .menu-list{
     display:none;
     flex-direction:column;
     position:absolute;
-    right:0;
     top:65px;
+    right:0;
     background:#111;
     padding:10px;
     border-radius:10px;
@@ -109,34 +105,10 @@ h1{
     border:none;
     color:white;
     padding:10px;
-    text-align:left;
     cursor:pointer;
+    text-align:left;
 }
-
-.menu-list button:hover{
-    color:cyan;
-}
-
-/* CONTACT */
-.contact{
-    display:none;
-    position:fixed;
-    bottom:80px;
-    right:20px;
-    background:#111;
-    padding:15px;
-    border-radius:10px;
-}
-
-.contact a{
-    display:block;
-    color:white;
-    margin:8px 0;
-    text-decoration:none;
-}
-.contact a:hover{
-    color:cyan;
-}
+.menu-list button:hover{color:cyan;}
 </style>
 </head>
 
@@ -147,21 +119,14 @@ h1{
 <h1>TÀI LIỆU ÔN THI ĐÁNH GIÁ NĂNG LỰC BỘ QUỐC PHÒNG - QD04</h1>
 
 <!-- MENU -->
-<div class="menu">
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+<div class="menu" id="menuBox">
+    <div class="menu-btn" id="dragBtn">☰</div>
+
     <div class="menu-list" id="menu">
         <button onclick="showPage('home')">🏠 Trang chủ</button>
         <button onclick="showPage('luyende')">🧠 Luyện đề</button>
         <button onclick="showPage('tailieu')">📚 Tài liệu</button>
-        <button onclick="toggleContact()">💬 Liên hệ</button>
     </div>
-</div>
-
-<!-- CONTACT -->
-<div class="contact" id="contact">
-    <a href="https://facebook.com/thanh.tai.207" target="_blank">Facebook</a>
-    <a href="https://zalo.me/0352332842" target="_blank">Zalo</a>
-    <a href="https://m.me/" target="_blank">Messenger</a>
 </div>
 
 <!-- CONTENT -->
@@ -169,48 +134,74 @@ h1{
 
 <script>
 
-// DATA POSTER
+/* DATA ĐÚNG LẠI */
 const home = `
 <div class="container">
-<a class="card" href="https://wayground.com/join?gc=15993929" target="_blank"><img src="poster-su.png"></a>
-<a class="card" href="https://wayground.com/join?gc=49417289" target="_blank"><img src="poster-dia.png"></a>
-<a class="card" href="https://drive.google.com/drive/folders/1XjkgB0eCab9F9WjYYCW_Ls7Qgza83J1B" target="_blank"><img src="dinhtinh.png"></a>
-<a class="card" href="https://drive.google.com/drive/folders/15Imf-08fg8yrheXhrrH_b-YWzosJc47d" target="_blank"><img src="dinhluong.png"></a>
+<a class="card" href="https://wayground.com/1" target="_blank"><img src="poster-su.png"></a>
+<a class="card" href="https://wayground.com/2" target="_blank"><img src="poster-dia.png"></a>
+<a class="card" href="https://drive.google.com/3" target="_blank"><img src="dinhtinh.png"></a>
+<a class="card" href="https://drive.google.com/4" target="_blank"><img src="dinhluong.png"></a>
 </div>`;
 
 const luyende = `
 <div class="container">
-<a class="card" href="https://wayground.com/join?gc=15993929" target="_blank"><img src="poster-su.png"></a>
-<a class="card" href="https://wayground.com/join?gc=49417289" target="_blank"><img src="poster-dia.png"></a>
+<a class="card" href="https://wayground.com/1" target="_blank"><img src="poster-su.png"></a>
+<a class="card" href="https://wayground.com/2" target="_blank"><img src="poster-dia.png"></a>
 </div>`;
 
 const tailieu = `
 <div class="container">
-<a class="card" href="https://drive.google.com/drive/folders/1XjkgB0eCab9F9WjYYCW_Ls7Qgza83J1B" target="_blank"><img src="dinhtinh.png"></a>
-<a class="card" href="https://drive.google.com/drive/folders/15Imf-08fg8yrheXhrrH_b-YWzosJc47d" target="_blank"><img src="dinhluong.png"></a>
+<a class="card" href="https://wayground.com/1" target="_blank"><img src="poster-su.png"></a>
+<a class="card" href="https://wayground.com/2" target="_blank"><img src="poster-dia.png"></a>
+<a class="card" href="https://drive.google.com/3" target="_blank"><img src="dinhtinh.png"></a>
+<a class="card" href="https://drive.google.com/4" target="_blank"><img src="dinhluong.png"></a>
 </div>`;
 
+/* FADE SWITCH */
 function showPage(page){
-    if(page === "home") document.getElementById("content").innerHTML = home;
-    if(page === "luyende") document.getElementById("content").innerHTML = luyende;
-    if(page === "tailieu") document.getElementById("content").innerHTML = tailieu;
+    let c = document.getElementById("content");
+    c.style.opacity = 0;
+
+    setTimeout(()=>{
+        if(page==="home") c.innerHTML = home;
+        if(page==="luyende") c.innerHTML = luyende;
+        if(page==="tailieu") c.innerHTML = tailieu;
+        c.style.opacity = 1;
+    },200);
 }
 
-function toggleMenu(){
-    document.getElementById("menu").style.display =
-    document.getElementById("menu").style.display === "flex" ? "none" : "flex";
-}
+/* MENU TOGGLE */
+document.getElementById("dragBtn").onclick = ()=>{
+    let m = document.getElementById("menu");
+    m.style.display = m.style.display==="flex"?"none":"flex";
+};
 
-function toggleContact(){
-    let c = document.getElementById("contact");
-    c.style.display = c.style.display === "block" ? "none" : "block";
-}
+/* DRAG MENU */
+let box = document.getElementById("menuBox");
+let drag = document.getElementById("dragBtn");
 
-// init
+let isDrag = false;
+
+drag.addEventListener("mousedown", e=>{
+    isDrag = true;
+});
+
+document.addEventListener("mousemove", e=>{
+    if(!isDrag) return;
+    box.style.left = e.clientX + "px";
+    box.style.top = e.clientY + "px";
+    box.style.right = "auto";
+});
+
+document.addEventListener("mouseup", ()=>{
+    isDrag = false;
+});
+
+/* INIT */
 showPage("home");
 
-// stars
-for(let i=0;i<80;i++){
+/* STAR */
+for(let i=0;i<60;i++){
     let s=document.createElement("div");
     s.className="star";
     s.style.left=Math.random()*100+"vw";
