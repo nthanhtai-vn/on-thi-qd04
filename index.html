@@ -15,12 +15,37 @@
         }
 
         h1{
-            color:#FFD700;
-            margin-bottom:40px;
-            font-size:32px;
-            text-transform:uppercase;
-        }
+    margin-bottom:40px;
+    font-size:32px;
+    text-transform:uppercase;
+    font-weight:bold;
 
+    background: linear-gradient(
+        90deg,
+        red,
+        orange,
+        yellow,
+        lime,
+        cyan,
+        blue,
+        violet,
+        red
+    );
+
+    background-size: 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: rgbText 5s linear infinite;
+}
+@keyframes rgbText{
+    0%{
+        background-position: 400% 0;
+    }
+    100%{
+        background-position: 0% 0;
+    }
+}
         .container{
             display:flex;
             justify-content:center;
@@ -82,7 +107,25 @@
     z-index: -2;
     animation: rgb-border 4s linear infinite;
 }
+.btn{
+    animation: glow 2s ease-in-out infinite alternate;
+}
 
+@keyframes glow{
+    from{
+        box-shadow:
+        0 0 10px red,
+        0 0 20px orange,
+        0 0 30px yellow;
+    }
+
+    to{
+        box-shadow:
+        0 0 20px cyan,
+        0 0 40px blue,
+        0 0 60px violet;
+    }
+}
 .btn::after{
     content: "";
     position: absolute;
